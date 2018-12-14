@@ -14,8 +14,8 @@ export function EventList(props) {
 	});
 
 	return (
-		<div className="event-list">
-			<ul>
+		<div className="event-list-div">
+			<ul className="event-list">
 				{events}
 			</ul>
 		</div>
@@ -23,7 +23,7 @@ export function EventList(props) {
 }
 
 const mapStateToProps = (state, props) => ({
-	events: state.events
+	events: state.user.events
 });
 
 export default connect(mapStateToProps)(EventList);
