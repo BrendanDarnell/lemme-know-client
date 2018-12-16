@@ -1,13 +1,14 @@
+.event-name {
+	text-align: center;
+	margin-top: 0;
+}
+
 .event-div {
 	border: 1px solid black;
 	border-radius: 10px;
 	width: 50%;
 	margin: auto;
 	padding: 2%;
-}
-
-h2 {
-	margin-top: 0;
 }
 
 .event-list > li {

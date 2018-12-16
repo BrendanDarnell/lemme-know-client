@@ -8,11 +8,11 @@ export function EventForm(props) {
 
 	return (
 		<React.Fragment>
-			<h2>New Event</h2>
+			<h2 className="new-event">New Event</h2>
 			
-			<form 
+			<form className="event-form"
 				onSubmit={props.handleSubmit(data => 
-					console.log(data)
+					console.log(data,props)	
 				)}
 			>
 				<label htmlFor="eventName">Event Name</label>

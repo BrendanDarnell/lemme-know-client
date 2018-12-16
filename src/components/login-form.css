@@ -1,10 +1,10 @@
-.new-event {
+.login {
 	text-align: center;
 }
 
-.event-form {
-	width: 60%;
-	height: 60%;
+.login-form {
+	width: 50%;
+	height: 40%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 3%;

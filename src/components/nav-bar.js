@@ -6,7 +6,7 @@ import './nav-bar.css';
 
 export default function NavBar(props) {
 	return (
-		<React.Fragment>	
+		<div className="header-div">	
 			<div className="logo">
 				<h1>Lemme Know</h1>
 			</div>
@@ -20,7 +20,7 @@ export default function NavBar(props) {
 					</li>
 				</ul>
 			</nav>
-		</React.Fragment>
+		</div>
 		);
 }
 
