@@ -1,5 +1,13 @@
-import {createStore} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {authReducer} from './reducers/auth';
+import {eventsReducer} from './reducers/events';
+import {reducer as formReducer} from 'redux-form';
+import thunk from 'redux-thunk';
 
-import {eventsReducer} from './reducers';
+const rootReducer = combineReducers({
+	auth: authReducer,
+	events: eventsReducer,
+	form: formReducer
+});
 
-export default createStore(eventsReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));

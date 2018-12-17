@@ -10,6 +10,7 @@ import SignupForm	from './signup-form';
 import './app.css';
 
 export default function App(props) {
+	console.log(props.state);
 	return (
 		<Router>
 			<React.Fragment>

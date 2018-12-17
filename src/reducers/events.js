@@ -14,9 +14,8 @@ const event2 = {
 	description: 'Going for a quick run to Olde Town Arvada and back'
 }
 
-const initialState = {
-	events: [event1, event2]
-}
+const initialState = [event1, event2]
+
 
 export const eventsReducer = (state=initialState, action) => {
 	return state;

@@ -1,7 +1,8 @@
 import React from 'react';
-
 import {reduxForm, Field} from 'redux-form';
+import {Redirect} from 'react-router-dom';
 
+import {login} from '../actions/auth'
 import './login-form.css';
 
 export function LoginForm(props) {
@@ -11,8 +12,10 @@ export function LoginForm(props) {
 			<h2 className="login">Login</h2>
 			
 			<form className="login-form"
-				onSubmit={props.handleSubmit(data => 
-					console.log(data)
+				onSubmit={props.handleSubmit(data => {
+					console.log('form data', data)
+					props.dispatch(login(data.username, data.password))
+				}
 				)}
 			>
 				<label htmlFor="username">Username</label>

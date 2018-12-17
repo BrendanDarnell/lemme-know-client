@@ -4,12 +4,14 @@ import {Provider} from 'react-redux';
 import store from './store';
 
 import './index.css';
-import EventList from './components/event-list';
+import App from './components/app';
 import * as serviceWorker from './serviceWorker';
+
+// import EventList from './components/event-list';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<EventList/> 
+		<App/> 
 	</Provider>,
 	document.getElementById('root')
 );
