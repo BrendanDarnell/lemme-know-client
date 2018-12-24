@@ -1,6 +1,5 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
-import {Redirect} from 'react-router-dom';
 
 import {login} from '../actions/auth'
 import './login-form.css';

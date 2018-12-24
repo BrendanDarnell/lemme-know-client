@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
-import LoginForm from './login-form';
-import './landing-page.css';
+import EventForm from './event-form';
+import './new-event-page.css';
 
-export function LandingPage(props) {
-	if(props.loggedIn && props.token) {
-		return <Redirect to="/my-events"/>
+export function NewEventPage(props) {
+	if(!props.loggedIn || !props.token) {
+		return <Redirect to="/"/>
 		// return props.history.push('/my-events')
 	}
 	else if(props.loading) {
@@ -20,9 +20,8 @@ export function LandingPage(props) {
 	}
 	else {
 		return(
-			<div className="landing-page">
-				<LoginForm/>
-				<p className="registerLink">New User? Click <Link to="/signup">here</Link> to create an account.</p>
+			<div className="new-event-div">
+				<EventForm/>
 			</div>
 			)
 	}
@@ -35,4 +34,4 @@ const mapStateToProps = (state,props) => ({
 	error: state.auth.error
 });
 
-export default connect(mapStateToProps)(LandingPage);
+export default connect(mapStateToProps)(NewEventPage);

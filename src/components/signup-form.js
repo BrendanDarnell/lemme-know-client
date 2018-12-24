@@ -1,18 +1,21 @@
 import React from 'react';
-
 import {reduxForm, Field} from 'redux-form';
 
-import './event-form.css';
+import {signup} from '../actions/auth';
+import './signup-form.css';
 
 export function SignupForm(props) {
 
 	return (
 		<React.Fragment>
-			<h2>Register</h2>
+			<h2 className="register">Register</h2>
 			
 			<form 
-				onSubmit={props.handleSubmit(data => 
-					console.log(data)
+				className="signup-form"
+				onSubmit={props.handleSubmit(data => {
+					console.log(data);
+					props.dispatch(signup(data))
+				}
 				)}
 			>
 				<label htmlFor="username">Username</label>

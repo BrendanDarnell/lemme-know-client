@@ -4,4 +4,5 @@
 
 .event-list > li {
 	margin-bottom: 2%;
+	list-style: none;
 }

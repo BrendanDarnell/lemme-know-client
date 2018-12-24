@@ -33,3 +33,29 @@ export const login = (username, password) => dispatch => {
 		.catch(error => dispatch(loginError(error)))
 	);
 }
+
+export const SIGNUP_REQUEST = 'LOGIN_REQUEST';
+export const signupRequest = () => ({
+	type: LOGIN_REQUEST
+});
+
+export const SIGNUP_SUCCESS = 'LOGIN_SUCCESS';
+export const signupSuccess = (user) => ({
+	type: LOGIN_SUCCESS,
+	user
+});
+
+export const SIGNUP_ERROR = 'LOGIN_ERROR';
+export const signupError = (error) => ({
+	type: LOGIN_ERROR,
+	error
+});
+
+export const signup = (data) => dispatch => {
+	dispatch(loginRequest());
+	return(
+		mockApiReq(data)
+		.then(res => dispatch(loginSuccess(res)))
+		.catch(error => dispatch(loginError(error)))
+	);
+}
