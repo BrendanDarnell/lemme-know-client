@@ -1,6 +1,6 @@
 function mockApiReq(data) {
-	console.log(data);
-	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});
+	console.log('mock reqest', data);
+	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'}, {event: data.data});
 	return new Promise((resolve,reject) => {
 		setTimeout(() => {
 			resolve(mockApiRes)},
@@ -14,9 +14,9 @@ export const newEventRequest = () => ({
 });
 
 export const NEW_EVENT_SUCCESS = 'NEW_EVENT_SUCCESS';
-export const newEventSuccess = (data) => ({
+export const newEventSuccess = (newEvent) => ({
 	type: NEW_EVENT_SUCCESS,
-	data
+	newEvent
 });
 
 export const NEW_EVENT_ERROR = 'NEW_EVENT_ERROR';
@@ -26,10 +26,10 @@ export const newEventError = (error) => ({
 });
 
 export const newEvent = (username, token, data) => dispatch => {
-	dispatch(loginRequest());
+	dispatch(newEventRequest());
 	return(
-		mockApiReq({username, password})
-		.then(res => dispatch(loginSuccess(res)))
-		.catch(error => dispatch(loginError(error)))
+		mockApiReq({username, token, data})
+		.then(res => dispatch(newEventSuccess(res.event)))
+		.catch(error => dispatch(newEventError(error)))
 	);
 }

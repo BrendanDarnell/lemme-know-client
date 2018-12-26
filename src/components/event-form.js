@@ -12,7 +12,7 @@ export function EventForm(props) {
 			
 			<form className="event-form"
 				onSubmit={props.handleSubmit(data => 
-					console.log(data,props)	
+					props.handleNewEvent(data)	
 				)}
 			>
 				<label htmlFor="eventName">Event Name</label>

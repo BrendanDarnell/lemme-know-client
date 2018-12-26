@@ -1,3 +1,9 @@
+import {
+	NEW_EVENT_REQUEST,
+	NEW_EVENT_SUCCESS,
+	NEW_EVENT_ERROR
+} from '../actions/events';
+
 const event1 = {
 	id: 1,
 	name: 'Hiking',
@@ -14,9 +20,37 @@ const event2 = {
 	description: 'Going for a quick run to Olde Town Arvada and back'
 }
 
-const initialState = [event1, event2]
+const initialState = {
+	loading: false,
+	events: [event1, event2]
+}
 
 
 export const eventsReducer = (state=initialState, action) => {
+	if(action.type === NEW_EVENT_REQUEST) {
+		console.log('event request');
+		return Object.assign({}, state, {loading: true});
+	}
+	else if(action.type === NEW_EVENT_SUCCESS) {
+		console.log('event success');
+		console.log(action);
+		return Object.assign({}, state, {
+			loading: false, 
+			events: [...state.events, {
+				id: 3,
+				name: action.newEvent.eventName,
+				date: action.newEvent.date,
+				returnTime: action.newEvent.returnTime,
+				description: action.newEvent.description
+			}]
+		});
+	}
+	else if(action.type === NEW_EVENT_ERROR) {
+		console.log('event error', action.error);
+		return Object.assign({}, state, {
+			loading: false,
+			error: action.error
+		});
+	}
 	return state;
 }

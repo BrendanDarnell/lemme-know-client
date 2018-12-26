@@ -23,7 +23,7 @@ export function EventList(props) {
 }
 
 const mapStateToProps = (state, props) => ({
-	events: state.events
+	events: state.events.events
 });
 
 export default connect(mapStateToProps)(EventList);
