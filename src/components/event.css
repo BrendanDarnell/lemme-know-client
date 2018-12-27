@@ -14,3 +14,12 @@
 .event-list > li {
 	list-style: none;
 }
+
+.remove-event {
+	display: block;
+}
+
+.remove-event > button {
+	display: inline-block;
+	margin-right: 1%;
+}
