@@ -1,3 +1,6 @@
+import {saveCredentials, clearCredentials} from '../local-storage';
+
+
 function mockApiReq(data) {
 	console.log(data);
 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});
@@ -29,33 +32,41 @@ export const login = (username, password) => dispatch => {
 	dispatch(loginRequest());
 	return(
 		mockApiReq({username, password})
-		.then(res => dispatch(loginSuccess(res)))
+		.then(res => {
+			dispatch(loginSuccess(res));
+			return res;
+		})
+		.then(credentials => saveCredentials(credentials))
 		.catch(error => dispatch(loginError(error)))
 	);
 }
 
-export const SIGNUP_REQUEST = 'LOGIN_REQUEST';
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const signupRequest = () => ({
 	type: LOGIN_REQUEST
 });
 
-export const SIGNUP_SUCCESS = 'LOGIN_SUCCESS';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const signupSuccess = (user) => ({
-	type: LOGIN_SUCCESS,
+	type: SIGNUP_SUCCESS,
 	user
 });
 
-export const SIGNUP_ERROR = 'LOGIN_ERROR';
+export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const signupError = (error) => ({
-	type: LOGIN_ERROR,
+	type: SIGNUP_ERROR,
 	error
 });
 
 export const signup = (data) => dispatch => {
-	dispatch(loginRequest());
+	dispatch(signupRequest());
 	return(
 		mockApiReq(data)
-		.then(res => dispatch(loginSuccess(res)))
-		.catch(error => dispatch(loginError(error)))
+		.then(res => {
+			dispatch(signupSuccess(res));
+			return res;
+		})
+		.then(credentials => saveCredentials(credentials))
+		.catch(error => dispatch(signupError(error)))
 	);
 }

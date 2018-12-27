@@ -4,10 +4,23 @@ import {eventsReducer} from './reducers/events';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 
+import {loadCredentials} from './local-storage';
+import {loginSuccess} from './actions/auth';
+
 const rootReducer = combineReducers({
 	auth: authReducer,
 	events: eventsReducer,
 	form: formReducer
 });
 
-export default createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const credentials = loadCredentials();
+if(credentials) {
+	if(credentials.username && credentials.token) {
+		console.log('credentials', credentials);
+		store.dispatch(loginSuccess(credentials));
+	}
+}
+
+export default store;

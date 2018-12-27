@@ -33,3 +33,31 @@ export const newEvent = (username, token, data) => dispatch => {
 		.catch(error => dispatch(newEventError(error)))
 	);
 }
+
+export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
+export const deleteEventRequest = () => ({
+	type: DELETE_EVENT_REQUEST
+});
+
+export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
+export const deleteEventSuccess = (updatedEvents) => ({
+	type: DELETE_EVENT_SUCCESS,
+	updatedEvents
+});
+
+export const DELETE_EVENT_ERROR = 'DELETE_EVENT_ERROR';
+export const deleteEventError = (error) => ({
+	type: DELETE_EVENT_ERROR,
+	error
+});
+
+export const deleteEvent = (username, token, eventId) => dispatch => {
+	dispatch(deleteEventRequest());
+	console.log(eventId);
+	return(
+		mockApiReq({username, token, eventId})
+		.then(res => dispatch(deleteEventSuccess(res)))
+		.catch(error => dispatch(deleteEventError(error)))
+	);
+}
+
