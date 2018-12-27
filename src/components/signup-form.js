@@ -1,10 +1,17 @@
 import React from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, focus} from 'redux-form';
 
 import {signup} from '../actions/auth';
+import Input from './input';
 import './signup-form.css';
 
 export function SignupForm(props) {
+
+	// <label htmlFor="contactNumber">Please provide your contact's phone number.</label>
+				// <Field name="contactNumber" type="text" label="" component="input"/>
+
+				// <label htmlFor="verifyContactNumber">Please verify your contact's phone number.</label>
+				// <Field name="verifyContactNumber" type="text" component="input"/>
 
 	return (
 		<React.Fragment>
@@ -18,21 +25,24 @@ export function SignupForm(props) {
 				}
 				)}
 			>
-				<label htmlFor="username">Username</label>
-				<Field name="username" type="text" component="input"/> 
-
-				<label htmlFor="password">Password</label>
-				<Field name="password" type="password" component="input"/>
-
-				<label htmlFor="verifyPassword">Verify Password</label>
-				<Field name="verifyPassword" type="password" component="input"/>
-
-				<label htmlFor="contactNumber">Please provide your contact's phone number.</label>
-				<Field name="contactNumber" type="text" component="input"/>
-
-				<label htmlFor="verifyContactNumber">Please verify your contact's phone number.</label>
-				<Field name="verifyContactNumber" type="text" component="input"/>
-
+				<Field 
+					name="username" 
+					type="text" 
+					label="Username" 
+					component={Input}
+				/> 
+				<Field 
+					name="password" 
+					type="password" 
+					label="Password" 
+					component={Input}
+				/>
+				<Field 
+					name="verifyPassword" 
+					type="password" 
+					label="Verify Password" 
+					component={Input}
+				/>
 				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
 			</form>
 		</React.Fragment>
@@ -41,6 +51,8 @@ export function SignupForm(props) {
 }
 
 export default reduxForm({
-	form: 'registration'
+	form: 'registration',
+	onSubmitFail: (errors, dispatch) =>
+        dispatch(focus('registration', Object.keys(errors)[0]))
 })(SignupForm);
 

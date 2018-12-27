@@ -1,7 +1,7 @@
 import React from 'react';
+import {reduxForm, Field, focus} from 'redux-form';
 
-import {reduxForm, Field} from 'redux-form';
-
+import Input from './input';
 import './event-form.css';
 
 export function EventForm(props) {
@@ -15,19 +15,30 @@ export function EventForm(props) {
 					props.handleNewEvent(data)	
 				)}
 			>
-				<label htmlFor="eventName">Event Name</label>
-				<Field name="eventName" type="text" component="input"/> 
-
-				<label htmlFor="date">What day are you going?</label>
-				<Field name="date" type="text" component="input"/>
-
-				<label htmlFor="returnTime">What time will you return?</label>
-				<Field name="returnTime" type="text" component="input"/>
-
-				<label htmlFor="description">Please provide a brief description of what/where 
-				you will be doing/going.</label>
-				<Field name="description" type="text" component="input"/>
-
+				<Field 
+					name="eventName" 
+					type="text" 
+					label="Event Name" 
+					component={Input}
+				/> 
+				<Field 
+					name="date" 
+					type="text" 
+					label="What day are you going?" 
+					component={Input}
+				/>
+				<Field 
+					name="returnTime" 
+					type="text" 
+					label="What time will you return?" 
+					component={Input}
+				/>
+				<Field 
+					name="description" 
+					type="text" 
+					label="Please provide a brief description of what/where you will be doing/going."
+					component={Input}
+				/>
 				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
 			</form>
 		</React.Fragment>
@@ -36,6 +47,8 @@ export function EventForm(props) {
 }
 
 export default reduxForm({
-	form: 'event'
+	form: 'event',
+	onSubmitFail: (errors, dispatch) =>
+        dispatch(focus('registration', Object.keys(errors)[0]))
 })(EventForm);
 
