@@ -26,6 +26,16 @@ label {
 	padding-left: 10%;
 }
 
+.field-error {
+	padding-left: 10%;
+	color: red;
+}
+
+.form-error {
+	text-align: center;
+	color: red;
+}
+
 button {
 	height: 5vh;
 	width: 15%;

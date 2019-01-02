@@ -1,3 +1,7 @@
+import {SubmissionError} from 'redux-form';
+
+import {convertToUTC} from '../utils';
+
 function mockApiReq(data) {
 	console.log('mock reqest', data);
 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'}, {event: data.data});
@@ -27,10 +31,17 @@ export const newEventError = (error) => ({
 
 export const newEvent = (username, token, data) => dispatch => {
 	dispatch(newEventRequest());
+
 	return(
-		mockApiReq({username, token, data})
+		convertToUTC('12-25-19', '4:45')
+		.then(res => mockApiReq({username, token, data}))
 		.then(res => dispatch(newEventSuccess(res.event)))
-		.catch(error => dispatch(newEventError(error)))
+		.catch(err => {
+			dispatch(newEventError(err));
+			console.log(err.field);
+			return Promise.reject(new SubmissionError({_error: "wrong password"}));
+			
+		})
 	);
 }
 
