@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm, Field, focus, destroy, SubmissionError} from 'redux-form';
 
 import Input from './input';
-import {required, phoneNumber} from '../validators'
+import {required, nonEmpty, phoneNumber, date, time} from '../validators';
 import './event-form.css';
 
 export function EventForm({error, ...props}) {
@@ -31,21 +31,21 @@ export function EventForm({error, ...props}) {
 					type="text" 
 					label="Event Name" 
 					component={Input}
-					validate={required}
+					validate={[required, nonEmpty]}
 				/> 
 				<Field 
 					name="date" 
 					type="text" 
 					label="What day are you going?" 
 					component={Input}
-					validate={required}
+					validate={[required, nonEmpty, date]}
 				/>
 				<Field 
 					name="returnTime" 
 					type="text" 
 					label="What time will you return?" 
 					component={Input}
-					validate={required}
+					validate={[required, nonEmpty, time]}
 				/>
 				<Field
 					name="amOrPm" 
@@ -66,14 +66,14 @@ export function EventForm({error, ...props}) {
 					type="text" 
 					label="Please provide a contact's phone number." 
 					component={Input}
-					validate={required, phoneNumber}
+					validate={[required, nonEmpty, phoneNumber]}
 				/>
 				<Field 
 					name="description" 
 					type="text" 
 					label="Please provide a brief description of what/where you will be doing/going."
 					component={Input}
-					validate={required}
+					validate={[required, nonEmpty]}
 				/>
 				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
 			</form>

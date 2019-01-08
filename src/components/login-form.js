@@ -1,11 +1,12 @@
 import React from 'react';
-import {reduxForm, Field, focus} from 'redux-form';
+import {reduxForm, Field, focus, destroy, SubmissionError} from 'redux-form';
 
 import {login} from '../actions/auth';
+import {required, nonEmpty} from '../validators';
 import Input from './input';
 import './login-form.css';
 
-export function LoginForm(props) {
+export function LoginForm({error, ...props}) {
 
 	return (
 		<React.Fragment>
@@ -23,12 +24,14 @@ export function LoginForm(props) {
 					type="text" 
 					label="Username" 
 					component={Input}
+					validators={[required, nonEmpty]}
 				/> 
 				<Field 
 					name="password" 
 					type="password" 
 					label="Password" 
 					component={Input}
+					validators={[required, nonEmpty]}
 				/>
 				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
 			</form>
@@ -39,6 +42,11 @@ export function LoginForm(props) {
 export default reduxForm({
 	form: 'login',
 	onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('registration', Object.keys(errors)[0]))
+        dispatch(focus('registration', Object.keys(errors)[0])),
+    destroyOnUnmount: false,
+    onSubmitSuccess: (result,dispatch) => {
+    	console.log('redux-form success');
+    	dispatch(destroy('event'));
+    }
 })(LoginForm);
 

@@ -4,7 +4,8 @@ import {
 	LOGIN_ERROR,
 	SIGNUP_REQUEST,
 	SIGNUP_SUCCESS,
-	SIGNUP_ERROR
+	SIGNUP_ERROR,
+	CLEAR_AUTH
 } from '../actions/auth';
 
 
@@ -50,12 +51,16 @@ export const authReducer = (state=initialState, action) => {
 			token: action.user.token
 		});
 	}
-	else if (action.type === SIGNUP_ERROR) {
-		console.log('login error');
+	else if(action.type === SIGNUP_ERROR) {
+		console.log('signup error');
 		return Object.assign({}, state, {
 			loading: false,
 			error: action.error
 		});
 	}
+	else if(action.type === CLEAR_AUTH) {
+		console.log('logging out');
+		return Object.assign({}, initialState);
+	} 
 	return state;
 }

@@ -1,5 +1,5 @@
 import {saveCredentials, clearCredentials} from '../local-storage';
-
+import {API_BASE_URL} from '../config';
 
 function mockApiReq(data) {
 	console.log(data);
@@ -70,3 +70,13 @@ export const signup = (data) => dispatch => {
 		.catch(error => dispatch(signupError(error)))
 	);
 }
+
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+export const clearAuth = () => ({
+	type: CLEAR_AUTH
+})
+
+export const logout = () => dispatch => {
+	clearCredentials();
+	dispatch(clearAuth());
+} 

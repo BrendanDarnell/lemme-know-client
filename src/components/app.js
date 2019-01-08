@@ -18,7 +18,7 @@ export default function App(props) {
 					<NavBar/>
 				</header>
 
-				<main>
+				<main role="main">
 					<Route exact path="/" component={LandingPage}/>
 					<Route exact path="/signup" component={SignupPage}/>
 					<Route exact path="/my-events" component={EventList}/>

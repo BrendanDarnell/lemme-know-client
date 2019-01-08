@@ -1,6 +1,7 @@
 import {validateDate} from './utils';
 
-export const required = value => (value ? undefined : 'Required');
+export const required = value => 
+    value ? undefined : 'Required';
 
 export const nonEmpty = value =>
     value.trim() !== '' ? undefined : 'Cannot be empty';
@@ -31,6 +32,6 @@ export const date = value =>
     'Date must have MM-DD-YY format.'
 
 export const time = value =>
-    /^\d{1,2}:\d{2}$/.test(value) && value.length === 5 || value.length === 4 ? undefined :
+    /^\d{1,2}:\d{2}$/.test(value) && (value.length === 5 || value.length === 4) ? undefined :
     'Time must be have HH:MM format.' 
 
