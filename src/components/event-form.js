@@ -75,7 +75,7 @@ export function EventForm({error, ...props}) {
 					component={Input}
 					validate={[required, nonEmpty]}
 				/>
-				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
+				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>
 		</React.Fragment>
 	);

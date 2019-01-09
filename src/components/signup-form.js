@@ -64,7 +64,7 @@ export function SignupForm({error, ...props}) {
 					component={Input}
 					validate={[required, nonEmpty, isTrimmed, passwordLength, matchesPassword]}
 				/>
-				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
+				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>
 		</React.Fragment>
 	);

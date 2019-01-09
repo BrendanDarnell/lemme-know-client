@@ -54,7 +54,6 @@ const mapStateToProps = (state,props) => ({
 	username: state.auth.username,
 	token: state.auth.token,
 	loading: state.events.loading,
-	
 	events: state.events.events
 });
 
