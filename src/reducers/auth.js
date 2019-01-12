@@ -12,6 +12,7 @@ import {
 const initialState = {
 	loggedIn: false,
 	loading: false,
+	name: null,
 	username: null,
 	token: null
 }
@@ -27,6 +28,7 @@ export const authReducer = (state=initialState, action) => {
 		return Object.assign({}, state, {
 			loggedIn: true,
 			loading: false, 
+			name: action.user.name,
 			username: action.user.username, 
 			token: action.user.token
 		});
@@ -47,6 +49,7 @@ export const authReducer = (state=initialState, action) => {
 		return Object.assign({}, state, {
 			loggedIn: true,
 			loading: false,
+			name: action.user.name,
 			username: action.user.username,
 			token: action.user.token
 		});

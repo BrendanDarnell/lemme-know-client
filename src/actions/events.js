@@ -1,6 +1,7 @@
 import {SubmissionError} from 'redux-form';
 
-import {convertToUTC} from '../utils';
+import {convertToUtc, normalizeResponseErrors} from '../utils';
+import {API_BASE_URL} from '../config';
 
 function mockApiReq(data) {
 	console.log('mock reqest', data);
@@ -29,18 +30,41 @@ export const newEventError = (error) => ({
 	error
 });
 
-export const newEvent = (username, token, data) => dispatch => {
+export const newEvent = (data) => dispatch => {
 	dispatch(newEventRequest());
-
+	console.log(data.date, data.returnTime+data.amOrPm);
 	return(
-		convertToUTC('12-25-19', '4:45')
-		.then(res => mockApiReq({username, token, data}))
-		.then(res => dispatch(newEventSuccess(res.event)))
+		convertToUtc(data.date, data.returnTime +' '+ data.amOrPm)
+		.then(utcDateTime => {
+			data.utcDateTime = utcDateTime;
+			// return data;
+		})
+		.then(() => {
+			console.log('new event request', data);
+			return fetch(`${API_BASE_URL}/events`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+			});
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})
+		.then(res => dispatch(newEventSuccess(res)))
 		.catch(err => {
 			dispatch(newEventError(err));
-			console.log(err.field);
-			return Promise.reject(new SubmissionError({_error: "wrong password"}));
-			
+			console.log(err.message);
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error creating your event.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
 		})
 	);
 }

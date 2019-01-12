@@ -30,7 +30,7 @@ export const loginError = (error) => ({
 	error
 });
 
-export const login = (username, password) => dispatch => {
+export const login = (data) => dispatch => {
 	dispatch(loginRequest());
 	console.log(API_BASE_URL);
 	return(
@@ -40,10 +40,7 @@ export const login = (username, password) => dispatch => {
 			headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                username,
-                password
-            })
+            body: JSON.stringify(data)
 		})
 		.then(res =>  {
 			console.log(res);
@@ -55,7 +52,10 @@ export const login = (username, password) => dispatch => {
 			return res;
 		})
 		.then(credentials => saveCredentials(credentials))
-		.catch(error => dispatch(loginError(error)))
+		.catch(err => {
+			dispatch(loginError(err));
+			return Promise.reject(new SubmissionError({_error: err}));
+		})
 	);
 }
 

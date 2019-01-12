@@ -5,8 +5,6 @@ import {logout} from '../actions/auth';
 
 import './nav-bar.css';
 
-// onClick={props.dispatch(logout())}
-
 export function NavBar(props) {
 	return (
 		<div className="header-div">	
@@ -22,7 +20,7 @@ export function NavBar(props) {
 						<Link to="/create-event">Create Event</Link>
 					</li>
 					<li>	
-						<button className="logout-button">logout</button>
+						<button className="logout-button" onClick={()=>props.dispatch(logout())}>logout</button>
 					</li>
 				</ul>
 			</nav>

@@ -51,15 +51,17 @@ export function EventForm({error, ...props}) {
 					name="amOrPm" 
 					type="radio" 
 					label="am" 
+					value="a"
 					component={Input}
-					// validate={required}
+					validate={required}
 				/>
 				<Field
 					name="amOrPm" 
 					type="radio" 
 					label="pm" 
+					value="p"
 					component={Input}
-					// validate={required}
+					validate={required}
 				/>
 				<Field 
 					name="contactNumber" 
