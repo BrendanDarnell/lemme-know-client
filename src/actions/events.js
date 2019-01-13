@@ -19,9 +19,9 @@ export const newEventRequest = () => ({
 });
 
 export const NEW_EVENT_SUCCESS = 'NEW_EVENT_SUCCESS';
-export const newEventSuccess = (newEvent) => ({
+export const newEventSuccess = (updatedEvents) => ({
 	type: NEW_EVENT_SUCCESS,
-	newEvent
+	updatedEvents
 });
 
 export const NEW_EVENT_ERROR = 'NEW_EVENT_ERROR';
@@ -54,7 +54,7 @@ export const newEvent = (data) => dispatch => {
 			console.log(res);
 			return res.json();
 		})
-		.then(res => dispatch(newEventSuccess(res)))
+		.then(updatedEvents => dispatch(newEventSuccess(updatedEvents)))
 		.catch(err => {
 			dispatch(newEventError(err));
 			console.log(err.message);

@@ -8,25 +8,25 @@ import {
 
 } from '../actions/events';
 
-const event1 = {
-	id: 1,
-	name: 'Hiking',
-	date: '12-20-18',
-	returnTime: '18:30',
-	description: 'Hiking to diamond lakes in Indian Peaks Wilderness Area'
-}
+// const event1 = {
+// 	id: 1,
+// 	name: 'Hiking',
+// 	date: '12-20-18',
+// 	returnTime: '18:30',
+// 	description: 'Hiking to diamond lakes in Indian Peaks Wilderness Area'
+// }
 
-const event2 = {
-	id: 2,
-	name: 'Running',
-	date: '12-25-18',
-	returnTime: '5:30',
-	description: 'Going for a quick run to Olde Town Arvada and back'
-}
+// const event2 = {
+// 	id: 2,
+// 	name: 'Running',
+// 	date: '12-25-18',
+// 	returnTime: '5:30',
+// 	description: 'Going for a quick run to Olde Town Arvada and back'
+// }
 
 const initialState = {
 	loading: false,
-	events: [event1, event2],
+	events: [],
 	error: null
 }
 
@@ -41,13 +41,7 @@ export const eventsReducer = (state=initialState, action) => {
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: [...state.events, {
-				id: 3,
-				name: action.newEvent.eventName,
-				date: action.newEvent.date,
-				returnTime: action.newEvent.returnTime,
-				description: action.newEvent.description
-			}]
+			events: action.updatedEvents
 		});
 	}
 	else if(action.type === NEW_EVENT_ERROR) {
@@ -66,7 +60,7 @@ export const eventsReducer = (state=initialState, action) => {
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: [event1, event2]	
+			events: []	
 		});
 	}
 	else if(action.type === DELETE_EVENT_ERROR) {

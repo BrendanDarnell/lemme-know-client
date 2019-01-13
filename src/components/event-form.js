@@ -51,7 +51,7 @@ export function EventForm({error, ...props}) {
 					name="amOrPm" 
 					type="radio" 
 					label="am" 
-					value="a"
+					value="am"
 					component={Input}
 					validate={required}
 				/>
@@ -59,7 +59,7 @@ export function EventForm({error, ...props}) {
 					name="amOrPm" 
 					type="radio" 
 					label="pm" 
-					value="p"
+					value="pm"
 					component={Input}
 					validate={required}
 				/>
