@@ -13,6 +13,36 @@ function mockApiReq(data) {
 		});
 }
 
+export const LOAD_EVENTS = 'LOAD_EVENTS';
+export const loadEvents = (events, err) => ({
+	type: LOAD_EVENTS,
+	events,
+	err
+});
+
+export const FETCH_EVENTS = 'FETCH_EVENTS';
+export const fetchEvents = (username, token) => dispatch => {
+	return (
+		fetch(`${API_BASE_URL}/events/${username}`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token})
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})
+		.then(events => dispatch(loadEvents(events, null)))
+		.catch(err => {
+			console.log(err);
+			dispatch(loadEvents(null, err))
+		})
+	)
+}
+
 export const NEW_EVENT_REQUEST = 'NEW_EVENT_REQUEST';
 export const newEventRequest = () => ({
 	type: NEW_EVENT_REQUEST

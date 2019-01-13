@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
-import EventList from './event-list';
+import EventHome from './event-home';
 import NewEventPage from './new-event-page';
 import NavBar from './nav-bar';
 import LandingPage from './landing-page';
@@ -21,7 +21,7 @@ export default function App(props) {
 				<main role="main">
 					<Route exact path="/" component={LandingPage}/>
 					<Route exact path="/signup" component={SignupPage}/>
-					<Route exact path="/my-events" component={EventList}/>
+					<Route exact path="/my-events" component={EventHome}/>
 					<Route exact path="/create-event" component={NewEventPage}/>
 				</main>
 			</React.Fragment>

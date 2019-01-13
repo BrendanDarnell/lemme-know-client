@@ -1,4 +1,5 @@
 import {
+	LOAD_EVENTS,
 	NEW_EVENT_REQUEST,
 	NEW_EVENT_SUCCESS,
 	NEW_EVENT_ERROR,
@@ -32,16 +33,27 @@ const initialState = {
 
 
 export const eventsReducer = (state=initialState, action) => {
-	if(action.type === NEW_EVENT_REQUEST) {
+	if(action.type === LOAD_EVENTS) {
+		console.log('load events', action);
+		return Object.assign({}, state, {
+			events: action.events,
+			error: action.err
+		});
+	}
+	else if(action.type === NEW_EVENT_REQUEST) {
 		console.log('event request');
-		return Object.assign({}, state, {loading: true});
+		return Object.assign({}, state, {
+			loading: true,
+			error: null
+		});
 	}
 	else if(action.type === NEW_EVENT_SUCCESS) {
 		console.log('event success');
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: action.updatedEvents
+			events: action.updatedEvents,
+			error: null
 		});
 	}
 	else if(action.type === NEW_EVENT_ERROR) {
@@ -53,14 +65,18 @@ export const eventsReducer = (state=initialState, action) => {
 	}
 	else if(action.type === DELETE_EVENT_REQUEST) {
 		console.log('delete request');
-		return Object.assign({}, state, {loading: true});
+		return Object.assign({}, state, {
+			loading: true,
+			error: null
+		});
 	}
 	else if(action.type === DELETE_EVENT_SUCCESS) {
 		console.log('delete success');
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: []	
+			events: [],
+			error: null
 		});
 	}
 	else if(action.type === DELETE_EVENT_ERROR) {
