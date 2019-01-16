@@ -1,15 +1,17 @@
+import {SubmissionError} from 'redux-form';
+
 import {saveCredentials, clearCredentials} from '../local-storage';
 import {API_BASE_URL} from '../config';
 
-function mockApiReq(data) {
-	console.log(data);
-	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});
-	return new Promise((resolve,reject) => {
-		setTimeout(() => {
-			resolve(mockApiRes)},
-			3000);
-		});
-}
+// function mockApiReq(data) {
+// 	console.log(data);
+// 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});
+// 	return new Promise((resolve,reject) => {
+// 		setTimeout(() => {
+// 			resolve(mockApiRes)},
+// 			3000);
+// 		});
+// }
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const loginRequest = () => ({
@@ -28,16 +30,38 @@ export const loginError = (error) => ({
 	error
 });
 
-export const login = (username, password) => dispatch => {
+export const login = (data) => dispatch => {
 	dispatch(loginRequest());
+	// console.log(API_BASE_URL);
+	// console.log(data);
 	return(
-		mockApiReq({username, password})
+		fetch(`${API_BASE_URL}/login`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+		})
+		.then(res =>  {
+			console.log(res);
+			return res.json()
+		})
 		.then(res => {
+			console.log(res);
 			dispatch(loginSuccess(res));
 			return res;
 		})
 		.then(credentials => saveCredentials(credentials))
-		.catch(error => dispatch(loginError(error)))
+		.catch(err => {
+			dispatch(loginError(err));
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error logging into your account.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
+		})
 	);
 }
 
@@ -61,13 +85,34 @@ export const signupError = (error) => ({
 export const signup = (data) => dispatch => {
 	dispatch(signupRequest());
 	return(
-		mockApiReq(data)
+		// mockApiReq(data)
+		fetch(`${API_BASE_URL}/signup`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+		})
+		.then(res =>  {
+			console.log(res);
+			return res.json()
+		})
 		.then(res => {
+			console.log(res);
 			dispatch(signupSuccess(res));
 			return res;
 		})
 		.then(credentials => saveCredentials(credentials))
-		.catch(error => dispatch(signupError(error)))
+		.catch(err => { 
+			dispatch(signupError(err))
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error creating your account.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
+		})
 	);
 }
 

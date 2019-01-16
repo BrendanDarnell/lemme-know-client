@@ -51,15 +51,17 @@ export function EventForm({error, ...props}) {
 					name="amOrPm" 
 					type="radio" 
 					label="am" 
+					value="am"
 					component={Input}
-					// validate={required}
+					validate={required}
 				/>
 				<Field
 					name="amOrPm" 
 					type="radio" 
 					label="pm" 
+					value="pm"
 					component={Input}
-					// validate={required}
+					validate={required}
 				/>
 				<Field 
 					name="contactNumber" 
@@ -75,7 +77,7 @@ export function EventForm({error, ...props}) {
 					component={Input}
 					validate={[required, nonEmpty]}
 				/>
-				<button type="submit" disabled={props.pristine||props.submitting}>Submit</button>
+				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>
 		</React.Fragment>
 	);

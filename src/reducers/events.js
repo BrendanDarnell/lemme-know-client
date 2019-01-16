@@ -1,4 +1,5 @@
 import {
+	LOAD_EVENTS,
 	NEW_EVENT_REQUEST,
 	NEW_EVENT_SUCCESS,
 	NEW_EVENT_ERROR,
@@ -8,46 +9,51 @@ import {
 
 } from '../actions/events';
 
-const event1 = {
-	id: 1,
-	name: 'Hiking',
-	date: '12-20-18',
-	returnTime: '18:30',
-	description: 'Hiking to diamond lakes in Indian Peaks Wilderness Area'
-}
+// const event1 = {
+// 	id: 1,
+// 	name: 'Hiking',
+// 	date: '12-20-18',
+// 	returnTime: '18:30',
+// 	description: 'Hiking to diamond lakes in Indian Peaks Wilderness Area'
+// }
 
-const event2 = {
-	id: 2,
-	name: 'Running',
-	date: '12-25-18',
-	returnTime: '5:30',
-	description: 'Going for a quick run to Olde Town Arvada and back'
-}
+// const event2 = {
+// 	id: 2,
+// 	name: 'Running',
+// 	date: '12-25-18',
+// 	returnTime: '5:30',
+// 	description: 'Going for a quick run to Olde Town Arvada and back'
+// }
 
 const initialState = {
 	loading: false,
-	events: [event1, event2],
+	events: [],
 	error: null
 }
 
 
 export const eventsReducer = (state=initialState, action) => {
-	if(action.type === NEW_EVENT_REQUEST) {
+	if(action.type === LOAD_EVENTS) {
+		console.log('load events', action);
+		return Object.assign({}, state, {
+			events: action.events,
+			error: action.err
+		});
+	}
+	else if(action.type === NEW_EVENT_REQUEST) {
 		console.log('event request');
-		return Object.assign({}, state, {loading: true});
+		return Object.assign({}, state, {
+			loading: true,
+			error: null
+		});
 	}
 	else if(action.type === NEW_EVENT_SUCCESS) {
 		console.log('event success');
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: [...state.events, {
-				id: 3,
-				name: action.newEvent.eventName,
-				date: action.newEvent.date,
-				returnTime: action.newEvent.returnTime,
-				description: action.newEvent.description
-			}]
+			events: action.updatedEvents,
+			error: null
 		});
 	}
 	else if(action.type === NEW_EVENT_ERROR) {
@@ -59,14 +65,18 @@ export const eventsReducer = (state=initialState, action) => {
 	}
 	else if(action.type === DELETE_EVENT_REQUEST) {
 		console.log('delete request');
-		return Object.assign({}, state, {loading: true});
+		return Object.assign({}, state, {
+			loading: true,
+			error: null
+		});
 	}
 	else if(action.type === DELETE_EVENT_SUCCESS) {
 		console.log('delete success');
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: [event1, event2]	
+			events: action.updatedEvents,
+			error: null
 		});
 	}
 	else if(action.type === DELETE_EVENT_ERROR) {

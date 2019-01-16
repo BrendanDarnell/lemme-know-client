@@ -1,6 +1,8 @@
 import {SubmissionError} from 'redux-form';
 
-import {convertToUTC} from '../utils';
+import {logout} from './auth';
+import {convertToUtc, normalizeResponseErrors} from '../utils';
+import {API_BASE_URL} from '../config';
 
 function mockApiReq(data) {
 	console.log('mock reqest', data);
@@ -12,15 +14,45 @@ function mockApiReq(data) {
 		});
 }
 
+export const LOAD_EVENTS = 'LOAD_EVENTS';
+export const loadEvents = (events, err) => ({
+	type: LOAD_EVENTS,
+	events,
+	err
+});
+
+export const FETCH_EVENTS = 'FETCH_EVENTS';
+export const fetchEvents = (username, token) => dispatch => {
+	return (
+		fetch(`${API_BASE_URL}/events/${username}`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token})
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})
+		.then(events => dispatch(loadEvents(events, null)))
+		.catch(err => {
+			console.log(err);
+			dispatch(loadEvents(null, err))
+		})
+	)
+}
+
 export const NEW_EVENT_REQUEST = 'NEW_EVENT_REQUEST';
 export const newEventRequest = () => ({
 	type: NEW_EVENT_REQUEST
 });
 
 export const NEW_EVENT_SUCCESS = 'NEW_EVENT_SUCCESS';
-export const newEventSuccess = (newEvent) => ({
+export const newEventSuccess = (updatedEvents) => ({
 	type: NEW_EVENT_SUCCESS,
-	newEvent
+	updatedEvents
 });
 
 export const NEW_EVENT_ERROR = 'NEW_EVENT_ERROR';
@@ -29,18 +61,41 @@ export const newEventError = (error) => ({
 	error
 });
 
-export const newEvent = (username, token, data) => dispatch => {
+export const newEvent = (data) => dispatch => {
 	dispatch(newEventRequest());
-
+	console.log(data.date, data.returnTime+data.amOrPm);
 	return(
-		convertToUTC('12-25-19', '4:45')
-		.then(res => mockApiReq({username, token, data}))
-		.then(res => dispatch(newEventSuccess(res.event)))
+		convertToUtc(data.date, data.returnTime +' '+ data.amOrPm)
+		.then(utcDateTime => {
+			data.utcDateTime = utcDateTime;
+			// return data;
+		})
+		.then(() => {
+			console.log('new event request', data);
+			return fetch(`${API_BASE_URL}/events`, {
+			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+			});
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})
+		.then(updatedEvents => dispatch(newEventSuccess(updatedEvents)))
 		.catch(err => {
 			dispatch(newEventError(err));
-			console.log(err.field);
-			return Promise.reject(new SubmissionError({_error: "wrong password"}));
-			
+			console.log(err.message);
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error creating your event.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
 		})
 	);
 }
@@ -62,13 +117,31 @@ export const deleteEventError = (error) => ({
 	error
 });
 
-export const deleteEvent = (username, token, eventId) => dispatch => {
+export const deleteEvent = (token, eventId) => dispatch => {
 	dispatch(deleteEventRequest());
 	console.log(eventId);
 	return(
-		mockApiReq({username, token, eventId})
-		.then(res => dispatch(deleteEventSuccess(res)))
-		.catch(error => dispatch(deleteEventError(error)))
+		fetch(`${API_BASE_URL}/events/${eventId}`, {
+			method: 'DELETE',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token})
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})		
+		.then(updatedEvents => dispatch(deleteEventSuccess(updatedEvents)))
+		.catch(err => {
+			if(err.status === 401) {
+				dispatch(logout());
+			}
+			else {
+				dispatch(deleteEventError(err));
+			}
+		})
 	);
 }
 

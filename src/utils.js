@@ -6,15 +6,15 @@ export function validateDate(date) {
 	return formattedDate.isValid();
 }
 
-export function convertToUTC(date, time) {
-	let formattedDateAndTime = moment(date + ' ' + time, ['MM-DD-YY HH:mm', 'MM-DD-YY H:mm'],  true);
+export function convertToUtc(date, time) {
+	let formattedDateAndTime = moment(date + ' ' + time, ['MM-DD-YY hh:mm a', 'MM-DD-YY h:mm a'],  true);
 	// return formattedDateAndTime.isValid();
 	return new Promise((resolve,reject) => {
 		if(formattedDateAndTime.isValid()) {
 			resolve(moment.utc(formattedDateAndTime));
 		}
 		else {
-			console.log('convertToUTC error')
+			console.log('convertToUtc error')
 			reject({
 				type: 'validationError',
 				field: 'date',
@@ -23,3 +23,19 @@ export function convertToUTC(date, time) {
 		}
 	});
 }
+
+export function normalizeResponseErrors(res) {
+    if (!res.ok) {
+        if (
+            res.headers.has('content-type') &&
+            res.headers.get('content-type').startsWith('application/json')
+        ) {
+            return res.json().then(err => Promise.reject(err));
+        }
+        return Promise.reject({
+            status: res.status,
+            message: res.statusText
+        });
+    }
+    return res;
+};

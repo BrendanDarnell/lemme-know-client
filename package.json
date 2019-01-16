@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.23.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-loader-spinner": "^2.3.0",
@@ -27,5 +28,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1"
+  }
 }
