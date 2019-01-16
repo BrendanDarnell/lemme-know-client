@@ -1,5 +1,6 @@
 import {SubmissionError} from 'redux-form';
 
+import {logout} from './auth';
 import {convertToUtc, normalizeResponseErrors} from '../utils';
 import {API_BASE_URL} from '../config';
 
@@ -116,13 +117,31 @@ export const deleteEventError = (error) => ({
 	error
 });
 
-export const deleteEvent = (username, token, eventId) => dispatch => {
+export const deleteEvent = (token, eventId) => dispatch => {
 	dispatch(deleteEventRequest());
 	console.log(eventId);
 	return(
-		mockApiReq({username, token, eventId})
-		.then(res => dispatch(deleteEventSuccess(res)))
-		.catch(error => dispatch(deleteEventError(error)))
+		fetch(`${API_BASE_URL}/events/${eventId}`, {
+			method: 'DELETE',
+			headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token})
+		})
+		.then(res => normalizeResponseErrors(res))
+		.then(res =>  {
+			console.log(res);
+			return res.json();
+		})		
+		.then(updatedEvents => dispatch(deleteEventSuccess(updatedEvents)))
+		.catch(err => {
+			if(err.status === 401) {
+				dispatch(logout());
+			}
+			else {
+				dispatch(deleteEventError(err));
+			}
+		})
 	);
 }
 

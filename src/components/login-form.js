@@ -7,6 +7,15 @@ import Input from './input';
 import './login-form.css';
 
 export function LoginForm({error, ...props}) {
+	let formError;
+	if(error) {
+		console.log(error);
+		formError = (
+			<div className="form-error" aria-live="polite">
+                {error}
+            </div>
+        );
+	}
 
 	return (
 		<React.Fragment>
@@ -15,10 +24,11 @@ export function LoginForm({error, ...props}) {
 			<form className="login-form"
 				onSubmit={props.handleSubmit(data => {
 					console.log('form data', data)
-					props.dispatch(login(data.username, data.password))
+					return props.dispatch(login(data))
 				}
 				)}
 			>
+				{formError}
 				<Field 
 					name="username" 
 					type="text" 

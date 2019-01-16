@@ -75,7 +75,7 @@ export const eventsReducer = (state=initialState, action) => {
 		console.log(action);
 		return Object.assign({}, state, {
 			loading: false, 
-			events: [],
+			events: action.updatedEvents,
 			error: null
 		});
 	}

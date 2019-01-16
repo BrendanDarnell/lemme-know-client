@@ -17,20 +17,25 @@ export class EventHome extends React.Component {
 			this.props.dispatch(fetchEvents(this.props.username, this.props.token));
 		}
 	}
-	
+
 	render() {
 		if(!this.props.loggedIn || !this.props.token) {
 			return <Redirect to="/"/>
 		}
 		else if(this.props.error) {
-			return <div className="events-error">Sorry, there was an error loading your events.</div>
+			if(this.props.error.message) {
+				return <div className="events-error">{this.props.error.message}</div>
+			}
+			else {
+				return <div className="events-error">Sorry, there was an internal server error.</div>
+			}
 		}
 		else {
 			const events = this.props.events.map((event,index) => {
 				return (
 					<li key={index}>
 						<Event {...event} onClick={() =>
-							this.props.dispatch(deleteEvent(this.props.username,this.props.token,event.id))
+							this.props.dispatch(deleteEvent(this.props.token, event._id))
 						}/>
 					</li>
 				);

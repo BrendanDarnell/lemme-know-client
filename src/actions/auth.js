@@ -32,9 +32,9 @@ export const loginError = (error) => ({
 
 export const login = (data) => dispatch => {
 	dispatch(loginRequest());
-	console.log(API_BASE_URL);
+	// console.log(API_BASE_URL);
+	// console.log(data);
 	return(
-		// mockApiReq({username, password})
 		fetch(`${API_BASE_URL}/login`, {
 			method: 'POST',
 			headers: {
@@ -54,7 +54,13 @@ export const login = (data) => dispatch => {
 		.then(credentials => saveCredentials(credentials))
 		.catch(err => {
 			dispatch(loginError(err));
-			return Promise.reject(new SubmissionError({_error: err}));
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error logging into your account.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
 		})
 	);
 }
@@ -99,7 +105,13 @@ export const signup = (data) => dispatch => {
 		.then(credentials => saveCredentials(credentials))
 		.catch(err => { 
 			dispatch(signupError(err))
-			return Promise.reject(new SubmissionError({_error: err}));
+			if(err.message) {
+				return Promise.reject(new SubmissionError({_error: err.message}));
+			}
+			else {
+				let message = 'Sorry, there was an error creating your account.'
+				return Promise.reject(new SubmissionError({_error: message}))		
+			}	
 		})
 	);
 }

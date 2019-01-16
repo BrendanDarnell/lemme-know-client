@@ -10,13 +10,15 @@ const passwordLength = length({min: 8, max: 40});
 const usernameLength = length({min: 3, max: 40});
 
 export function SignupForm({error, ...props}) {
-
-	// <label htmlFor="contactNumber">Please provide your contact's phone number.</label>
-				// <Field name="contactNumber" type="text" label="" component="input"/>
-
-				// <label htmlFor="verifyContactNumber">Please verify your contact's phone number.</label>
-				// <Field name="verifyContactNumber" type="text" component="input"/>
-
+	let formError;
+	if(error) {
+		console.log(error);
+		formError = (
+			<div className="form-error" aria-live="polite">
+                {error}
+            </div>
+        );
+	}
 	return (
 		<React.Fragment>
 			<h2 className="register">Register</h2>
@@ -25,10 +27,11 @@ export function SignupForm({error, ...props}) {
 				className="signup-form"
 				onSubmit={props.handleSubmit(data => {
 					console.log(data);
-					props.dispatch(signup(data))
+					return props.dispatch(signup(data))
 				}
 				)}
 			>
+				{formError}
 				<Field 
 					name="firstName" 
 					type="text" 
