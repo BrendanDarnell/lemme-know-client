@@ -13,7 +13,7 @@ export default function Event(props) {
 				<li>Description: {props.description}</li>
 			</ul>
 			<span className="remove-event">
-				<button onClick={props.onClick}>X</button>
+				<button onClick={props.onClick} className="delete-button">X</button>
 				Check-in/Remove Event
 			</span>
 		</div>

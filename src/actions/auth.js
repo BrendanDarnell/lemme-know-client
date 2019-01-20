@@ -3,6 +3,7 @@ import {SubmissionError} from 'redux-form';
 import {saveCredentials, clearCredentials} from '../local-storage';
 import {API_BASE_URL} from '../config';
 
+
 // function mockApiReq(data) {
 // 	console.log(data);
 // 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});

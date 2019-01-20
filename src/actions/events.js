@@ -4,15 +4,15 @@ import {logout} from './auth';
 import {convertToUtc, normalizeResponseErrors} from '../utils';
 import {API_BASE_URL} from '../config';
 
-function mockApiReq(data) {
-	console.log('mock reqest', data);
-	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'}, {event: data.data});
-	return new Promise((resolve,reject) => {
-		setTimeout(() => {
-			resolve(mockApiRes)},
-			3000);
-		});
-}
+// function mockApiReq(data) {
+// 	console.log('mock reqest', data);
+// 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'}, {event: data.data});
+// 	return new Promise((resolve,reject) => {
+// 		setTimeout(() => {
+// 			resolve(mockApiRes)},
+// 			3000);
+// 		});
+// }
 
 export const LOAD_EVENTS = 'LOAD_EVENTS';
 export const loadEvents = (events, err) => ({
