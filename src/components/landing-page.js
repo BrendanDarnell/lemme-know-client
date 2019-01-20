@@ -22,7 +22,7 @@ export function LandingPage(props) {
 		return(
 			<div className="landing-page">
 				<LoginForm/>
-				<p className="registerLink">New User? Click <Link to="/signup">here</Link> to create an account.</p>
+				<p className="register-link">New User? Click <Link to="/signup">here</Link> to create an account.</p>
 			</div>
 			)
 	}

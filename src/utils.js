@@ -1,5 +1,5 @@
 // import {submissionError} from 'redux-form';
-import * as moment	from 'moment';
+import moment from 'moment';
 
 export function validateDate(date) {
 	let formattedDate = moment(date, 'MM-DD-YY', true);
