@@ -21,7 +21,6 @@ export const loadEvents = (events, err) => ({
 	err
 });
 
-export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const fetchEvents = (username, token) => dispatch => {
 	return (
 		fetch(`${API_BASE_URL}/events/${username}`, {

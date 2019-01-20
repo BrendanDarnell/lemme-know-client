@@ -2,6 +2,7 @@ import {SubmissionError} from 'redux-form';
 
 import {saveCredentials, clearCredentials} from '../local-storage';
 import {API_BASE_URL} from '../config';
+import {normalizeResponseErrors} from '../utils';
 
 
 // function mockApiReq(data) {
@@ -43,6 +44,7 @@ export const login = (data) => dispatch => {
             },
             body: JSON.stringify(data)
 		})
+		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
 			console.log(res);
 			return res.json()
@@ -68,7 +70,7 @@ export const login = (data) => dispatch => {
 
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const signupRequest = () => ({
-	type: LOGIN_REQUEST
+	type: SIGNUP_REQUEST
 });
 
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -94,6 +96,7 @@ export const signup = (data) => dispatch => {
             },
             body: JSON.stringify(data)
 		})
+		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
 			console.log(res);
 			return res.json()
