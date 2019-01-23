@@ -5,16 +5,6 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from '../utils';
 
 
-// function mockApiReq(data) {
-// 	console.log(data);
-// 	const mockApiRes = Object.assign({},{username: data.username},{token: '123abc'});
-// 	return new Promise((resolve,reject) => {
-// 		setTimeout(() => {
-// 			resolve(mockApiRes)},
-// 			3000);
-// 		});
-// }
-
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const loginRequest = () => ({
 	type: LOGIN_REQUEST
