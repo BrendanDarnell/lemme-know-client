@@ -40,6 +40,7 @@
 }
 
 .field-error {
+	font-size: 2em;
 	padding-left: 10%;
 	color: red;
 }
