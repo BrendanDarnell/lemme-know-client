@@ -1,5 +1,8 @@
-.event-list-div > ul {
+.event-home > ul {
 	padding-left: 0;
+	background-color: #152B42;
+	min-height: 85vh;
+	margin: 0;
 }
 
 .event-list > li {

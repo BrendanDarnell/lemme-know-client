@@ -42,7 +42,7 @@ export class EventHome extends React.Component {
 			});
 
 			return (
-				<div className="event-list-div">
+				<div className="event-home">
 					<ul className="event-list">
 						{events}
 					</ul>
