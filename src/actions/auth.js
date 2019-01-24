@@ -4,6 +4,9 @@ import {saveCredentials, clearCredentials} from '../local-storage';
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from '../utils';
 
+if(API_BASE_URL.endsWith('/')) {
+	API_BASE_URL = API_BASE_URL.slice(0, API_BASE_URL.length - 1)
+}
 
 // function mockApiReq(data) {
 // 	console.log(data);
@@ -33,8 +36,11 @@ export const loginError = (error) => ({
 });
 
 export const login = (data) => dispatch => {
+	if(API_BASE_URL.endsWith('/')) {
+		API_BASE_URL = API_BASE_URL.slice(0, API_BASE_URL.length - 1)
+	}
 	dispatch(loginRequest());
-	// console.log(API_BASE_URL);
+	console.log(API_BASE_URL);
 	// console.log(data);
 	return(
 		fetch(`${API_BASE_URL}/login`, {
@@ -86,6 +92,7 @@ export const signupError = (error) => ({
 });
 
 export const signup = (data) => dispatch => {
+	console.log(API_BASE_URL)
 	dispatch(signupRequest());
 	return(
 		// mockApiReq(data)

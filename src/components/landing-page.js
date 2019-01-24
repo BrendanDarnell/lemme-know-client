@@ -21,8 +21,26 @@ export function LandingPage(props) {
 	else {
 		return(
 			<div className="landing-page">
-				<LoginForm/>
-				<p className="register-link">New User? Click <Link to="/signup">here</Link> to create an account.</p>
+				<div className="app-intro">
+					<h1 className="intro-name">Lemme Know</h1>
+					<p className="intro-text">
+						Going on a solo hike, an early morning run, or backcountry skiing?  Stay safe
+						with the Lemme Know app.  Lemme Know allows users to create events containing their
+						expected return time and a contact's phone number.  If the user doesn't check-in
+						from the event by the time they specified, their contact is sent a text asking to
+						check-in on the user. 
+					</p>
+					<p className="instruct-text">
+						 To try out the app yourself, login with the username: DemoUser,
+						the password: password, put your phone number as the contact number, and create an
+						event that expires in a few minutes.  After the event expires, you should recieve a text
+						notification.  
+					</p>
+				</div>
+				<div className="login-form-div">
+					<LoginForm/>
+					<p className="register-link">New User? Click <Link to="/signup">here</Link> to create an account.</p>
+				</div>
 			</div>
 			)
 	}

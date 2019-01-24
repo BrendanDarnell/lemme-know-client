@@ -21,16 +21,10 @@ export default function App(props) {
 	);
 }
 
-const LandingPageContainer = () => (	
-	<React.Fragment>
-		<header>
-			<h1>Lemme Know</h1>
-		</header>
-
-		<main role="main">
-			<Route exact path="/" component={LandingPage}/>
-		</main>
-	</React.Fragment>
+const LandingPageContainer = () => (		
+	<main role="main" className="landing-page-main">
+		<Route exact path="/" component={LandingPage}/>
+	</main>	
 )
 
 const DefaultContainer = () => (

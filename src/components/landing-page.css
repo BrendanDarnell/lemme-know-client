@@ -6,3 +6,73 @@
 	margin-top: 20vh;
 	text-align: center;
 }
+
+.landing-page-cont {
+	min-height: 100vh;
+	width: 100vw;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.app-intro {
+	width: 100%;
+	background-image: url('../images/hiking.jpg');
+	background-size: cover;
+	background-position: 50%;
+	margin: 0;
+	color: #152B42;
+	padding: 3%;
+	text-align: center;
+	/*height: 90vh;*/
+	min-height: 600px;
+}
+
+.intro-name {
+	text-align: left;
+}
+
+.intro-text, .instruct-text {
+	text-align: left;
+}
+
+.intro-text {
+	width: 50%;
+	margin-bottom: 0;
+}
+
+.instruct-text {
+	width: 100%;
+	margin-top: 0;
+}
+
+.login-form-div {
+	color: white;
+	width: 100%;
+	background-color: #152B42;
+	margin: 0;
+	padding: 2%;
+}
+
+@media screen and (min-width: 359px) {
+	.app-intro {
+		min-height: 585px;
+	}
+}
+
+@media screen and (min-width: 450px) {
+	.instruct-text {
+		width: 50%;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.app-intro {
+		background-position: right;
+	}
+
+	.intro-text {
+		width: 50%;
+		text-align: left;
+	}
+}
