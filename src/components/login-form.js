@@ -34,14 +34,14 @@ export function LoginForm({error, ...props}) {
 					type="text" 
 					label="Username" 
 					component={Input}
-					validators={[required, nonEmpty]}
+					validate={[required, nonEmpty]}
 				/> 
 				<Field 
 					name="password" 
 					type="password" 
 					label="Password" 
 					component={Input}
-					validators={[required, nonEmpty]}
+					validate={[required, nonEmpty]}
 				/>
 				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>
@@ -52,7 +52,7 @@ export function LoginForm({error, ...props}) {
 export default reduxForm({
 	form: 'login',
 	onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('registration', Object.keys(errors)[0])),
+        dispatch(focus('login', Object.keys(errors)[0])),
     destroyOnUnmount: false,
     onSubmitSuccess: (result,dispatch) => {
     	console.log('redux-form success');
