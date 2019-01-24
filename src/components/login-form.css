@@ -39,6 +39,11 @@
 	max-width: 150px;
 }
 
+.field-error {
+	padding-left: 10%;
+	color: red;
+}
+
 @media screen and (min-width: 449px) {
 	.login-form > .form-button {
 		height: 5vh;

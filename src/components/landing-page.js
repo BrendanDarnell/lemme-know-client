@@ -30,7 +30,7 @@ export function LandingPage(props) {
 						from the event by the time they specified, their contact is sent a text asking to
 						check-in on the user. 
 					</p>
-					<p className="instruct-text">
+					<p className="instr-text">
 						 To try out the app yourself, login with the username: DemoUser,
 						the password: password, put your phone number as the contact number, and create an
 						event that expires in a few minutes.  After the event expires, you should recieve a text

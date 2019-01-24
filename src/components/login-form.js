@@ -52,7 +52,7 @@ export function LoginForm({error, ...props}) {
 export default reduxForm({
 	form: 'login',
 	onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('registration', Object.keys(errors)[0])),
+        dispatch(focus('login', Object.keys(errors)[0])),
     destroyOnUnmount: false,
     onSubmitSuccess: (result,dispatch) => {
     	console.log('redux-form success');
