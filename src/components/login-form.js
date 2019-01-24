@@ -34,14 +34,14 @@ export function LoginForm({error, ...props}) {
 					type="text" 
 					label="Username" 
 					component={Input}
-					validators={[required, nonEmpty]}
+					validate={[required, nonEmpty]}
 				/> 
 				<Field 
 					name="password" 
 					type="password" 
 					label="Password" 
 					component={Input}
-					validators={[required, nonEmpty]}
+					validate={[required, nonEmpty]}
 				/>
 				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>

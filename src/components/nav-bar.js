@@ -13,19 +13,18 @@ export function NavBar(props) {
 			</div>
 			<nav className="nav-links" role="navigation">
 				<div className="dropdown-container">
-					<div className="dropdown-content">
-						<ul className="nav-list">
-							<li>
-								<Link to="/my-events">My Events</Link>
-							</li>
-							<li>
-								<Link to="/create-event">Create Event</Link>
-							</li>
-							<li>	
-								<button className="logout-button" onClick={()=>props.dispatch(logout())}>logout</button>
-							</li>
-						</ul>
-					</div>
+					<span className="fa fa-navicon fa-3x"></span>
+					<ul className="nav-list">
+						<li>
+							<Link to="/my-events">My Events</Link>
+						</li>
+						<li>
+							<Link to="/create-event">Create Event</Link>
+						</li>
+						<li>	
+							<button className="logout-button" onClick={()=>props.dispatch(logout())}>logout</button>
+						</li>
+					</ul>
 				</div>
 			</nav>
 		</div>

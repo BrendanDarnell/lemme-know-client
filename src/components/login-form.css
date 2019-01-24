@@ -24,6 +24,7 @@
 }
 
 .login-form > label {
+	display: none;
 	padding-left: 10%;
 }
 
@@ -39,10 +40,10 @@
 	max-width: 150px;
 }
 
-.field-error {
-	font-size: 2em;
+.login-form > .field-error {
 	padding-left: 10%;
 	color: red;
+	float: left;
 }
 
 @media screen and (min-width: 449px) {
