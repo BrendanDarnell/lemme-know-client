@@ -42,7 +42,7 @@ export class NewEventPage extends React.Component {
 		}
 		else {
 			return(
-				<div className="new-event-div">
+				<div className="new-event-page">
 					<EventForm handleNewEvent={(data) => this.handleNewEvent(data)}/>
 				</div>
 			)

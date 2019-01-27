@@ -6,20 +6,54 @@
 .event-div {
 	border: 1px solid black;
 	border-radius: 10px;
-	width: 50%;
+	width: 95%;
 	margin: auto;
 	padding: 2%;
+	background-color: white;
+	color: #152B42;
 }
 
-.event-list > li {
+.event-details {
+	padding-left: 2%;
+}
+
+.detail-name {
+	color: #152B42;
+	font-weight: bold;	
+}
+
+.event-details > li {
+	color: black;
 	list-style: none;
+	margin-bottom: 2%;
 }
 
 .remove-event {
 	display: block;
+	text-align: center;
 }
 
 .remove-event > button {
+	height: 4vh;
+	min-height: 30px;
+	max-height: 50px;
+	color: white;
+	background-color: #152B42;
+	border: 1px solid black;
+	text-align: center;
 	display: inline-block;
 	margin-right: 1%;
+	cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+	.event-div {
+		width: 85%;
+	}	
+}
+
+@media screen and (min-width: 900px) {
+	.event-div {
+		width: 70%;
+	}	
 }

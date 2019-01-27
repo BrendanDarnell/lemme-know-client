@@ -98,6 +98,19 @@ describe('<EventHome/>', () => {
 		expect(wrapper.contains(<div className="events-error">mock error message</div>)).toBe(true);		
 	});
 
+	it('should display no event message if the user does not have any events', ()=> {
+		let props = {
+			'username': 'mockUsername',
+			'events': [],
+			'token': "mockToken",
+			'error': null,
+			'loggedIn': true
+		}	
+		const dispatch = jest.fn();
+		let wrapper = shallow(<EventHome {...props} dispatch={dispatch}/>);
+		expect(wrapper.find('div').hasClass('no-events')).toBe(true);		
+	})
+
 	it('should render a list of events if logged in and no errors', () => {
 		let props = {
 			'username': 'mockUsername',
@@ -108,11 +121,11 @@ describe('<EventHome/>', () => {
 		}	
 		const dispatch = jest.fn();
 		let wrapper = shallow(<EventHome {...props} dispatch={dispatch}/>);
-		expect(wrapper.find('div').hasClass('event-list-div')).toBe(true);	
 		expect(wrapper.find('ul').hasClass('event-list')).toBe(true);
 		expect(wrapper.find('Event')).toHaveLength(2);
 		expect(wrapper.find('li')).toHaveLength(2);	
 	});
+	
 	it('should dispatch deleteEvent when delete button is clicked', () => {
 		let props = {
 			'username': 'mockUsername',
