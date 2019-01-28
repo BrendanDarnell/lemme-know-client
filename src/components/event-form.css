@@ -3,6 +3,7 @@
 }
 
 .event-form {
+	color: white;
 	width: 95%;
 	height: 60%;
 	margin-left: auto;
@@ -11,6 +12,7 @@
 	border: 1px solid black;
 	padding-top: 1%;
 	padding-bottom: 1%;
+	/*background-color: white;*/
 }
 
 .new-event-page > h2 {
@@ -32,33 +34,31 @@
 	padding-left: 5%;
 }
 
-.event-form > .field-error {
-	padding-left: 10%;
+.event-form * .field-error {
+	padding-left: 5%;
 	color: red;
 	float: left;
 }
 
-.event-form > .form-error {
+.event-form * .form-error {
 	text-align: center;
 	color: red;
 }
 
 .event-form > .form-button {
-	height: 5vh;
+	height: 4vh;
 	width: 15%;
 	margin-top: 2%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	/*color: black;
-	height: 20%;
-	width: 25%;
-	margin-top: 2%;
-	margin-bottom: 2%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 150px;*/
+	min-height: 30px;
+	max-height: 50px;
+	background-color: white;
+	color: #152B42;
+	border: 1px solid black;
+	text-align: center;
+	cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {

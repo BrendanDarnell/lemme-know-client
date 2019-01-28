@@ -21,7 +21,7 @@ export function NavBar(props) {
 						<li>
 							<Link to="/create-event">Create Event</Link>
 						</li>
-						<li>	
+						<li className="list-button">	
 							<button className="logout-button" onClick={()=>props.dispatch(logout())}>logout</button>
 						</li>
 					</ul>

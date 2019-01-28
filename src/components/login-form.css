@@ -14,17 +14,15 @@
 	max-width: 600px;
 }
 
-.login-form > input {
+.login-form * input {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1%;
 	width: 80%;
-
 }
 
-.login-form > label {
-	display: none;
+.login-form * label {
 	padding-left: 10%;
 }
 
@@ -40,7 +38,7 @@
 	max-width: 150px;
 }
 
-.login-form > .field-error {
+.login-form * .field-error {
 	padding-left: 10%;
 	color: red;
 	float: left;
