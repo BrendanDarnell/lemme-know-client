@@ -3,6 +3,7 @@
 	margin-top: 0;
 	padding-top: 2%;
 	color: white;
+	font-family: 'Archivo Black', sans-serif;
 }
 
 .signup-form {
@@ -27,6 +28,7 @@
 
 .signup-form * label {
 	padding-left: 10%;
+	font-family: 'Tenor Sans', sans-serif;
 }
 
 .signup-form * .field-error {
@@ -50,4 +52,11 @@
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 150px;
+}
+
+@media screen and (min-width: 449px) {
+	.signup-form > .form-button {
+		height: 5vh;
+		max-height: 45px;
+	}
 }

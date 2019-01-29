@@ -37,7 +37,7 @@ describe('<LandingPage/>', () => {
 		expect(wrapper.find('Loader')).toHaveLength(1);		
 	});
 
-	it('if all props null or false, should display login form', () => {
+	it('if all props null or false, should display landing page with login form', () => {
 		const props = {
 			loggedIn: false,
 			token: null,
@@ -45,8 +45,8 @@ describe('<LandingPage/>', () => {
 			error: null
 		}
 		let wrapper = shallow(<LandingPage {...props}/>);
-		expect(wrapper.find('div').hasClass('landing-page')).toBe(true);
-		expect(wrapper.find('p').hasClass('register-link')).toBe(true);
+		expect(wrapper.find('div').first().hasClass('landing-page')).toBe(true);
+		expect(wrapper.find('p')).toHaveLength(3);
 		expect(wrapper.find('Link')).toHaveLength(1);
 	});	
 })

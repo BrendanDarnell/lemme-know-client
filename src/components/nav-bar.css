@@ -20,7 +20,8 @@
 
 .logo > h1 {
 	margin: 0;
-	font-size: 1.7em;
+	font-size: 1.5em;
+	font-family: 'Archivo Black', sans-serif;
 	/*height: 100%;*/
 	/*line-height: 100%;*/
 	/*margin: 0;*/
@@ -45,6 +46,7 @@ nav {
 
 .nav-list {
 	display: none;
+	font-family: 'Tenor Sans', sans-serif;
 	/*position: absolute;
 	height: 100%;
 	margin-bottom: 0;
@@ -82,7 +84,8 @@ a {
 }
 
 @media screen and (max-width: 749px) {
-	.list-button:hover {
+
+	.dropdown-container * .list-button {
 		background-color: white;
 		height: 100%;
 		width: 100%;
@@ -107,6 +110,9 @@ a {
 }
 
 @media screen and (min-width: 750px) {
+	.logo > h1 {
+		font-size: 1.7em;
+	}
 	.logo {
 		width: 55%;
 	}

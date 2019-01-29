@@ -99,7 +99,7 @@ describe('<NewEventPage/>', () => {
 		}
 		const dispatch = jest.fn();
 		let wrapper = shallow(<NewEventPage {...props} dispatch={dispatch}/>);
-		expect(wrapper.find('div').hasClass('new-event-div')).toBe(true);			
+		expect(wrapper.find('div').hasClass('new-event-page')).toBe(true);			
 	});
 
 	it('should dispatch the newEvent action when handleNewEvent is called', () => {

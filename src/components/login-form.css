@@ -1,5 +1,6 @@
 .login {
 	text-align: center;
+	font-family: 'Archivo Black', sans-serif;
 }
 
 .login-form {
@@ -24,6 +25,7 @@
 
 .login-form * label {
 	padding-left: 10%;
+	font-family: 'Tenor Sans', sans-serif;
 }
 
 .login-form > .form-button {
@@ -42,6 +44,11 @@
 	padding-left: 10%;
 	color: red;
 	float: left;
+}
+
+.login-form * .form-error {
+	text-align: center;
+	color: red;
 }
 
 @media screen and (min-width: 449px) {

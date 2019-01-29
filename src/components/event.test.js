@@ -20,14 +20,14 @@ describe('<Event/>', () => {
 		}
 		let wrapper = shallow(<Event {...props}/>);
 		expect(wrapper.find('div').hasClass('event-div')).toBe(true);
-		expect(wrapper.find('ul').hasClass('event-list')).toBe(true);
-		expect(wrapper.find('span').hasClass('remove-event')).toBe(true);
+		expect(wrapper.find('ul').hasClass('event-details')).toBe(true);
+		expect(wrapper.find('span.remove-event')).toHaveLength(1);
 		expect(wrapper.find('button').hasClass('delete-button')).toBe(true);
 		expect(wrapper.contains(<h2 className="event-name">Hiking</h2>)).toBe(true);
-		expect(wrapper.contains(<li>Event Date: 01-20-19</li>)).toBe(true);
-		expect(wrapper.contains(<li>Return Time: 5:30 pm</li>)).toBe(true);
-		expect(wrapper.contains(<li>Contact Number: 1-333-333-3333</li>)).toBe(true);
-		expect(wrapper.contains(<li>Description: Hiking Longs Peak</li>)).toBe(true);
+		expect(wrapper.contains(<li><span className="detail-name">Event Date:</span> 01-20-19</li>)).toBe(true);
+		expect(wrapper.contains(<li><span className="detail-name">Return Time:</span> 5:30 pm</li>)).toBe(true);
+		expect(wrapper.contains(<li><span className="detail-name">Contact Number:</span> 1-333-333-3333</li>)).toBe(true);
+		expect(wrapper.contains(<li><span className="detail-name">Description:</span> Hiking Longs Peak</li>)).toBe(true);
 	});
 
 	it('should call the onClick prop when the delete button is clicked', () => {
