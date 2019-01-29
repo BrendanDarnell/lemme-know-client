@@ -1,41 +1,71 @@
 
 .header-div {
+	color: #152B42;
 	border: solid 1px black;
-	background-color: grey;
+	/*background-color: grey;*/
 	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .logo {
-	display: inline-block;
+	/*display: inline-block;*/
+	/*width: 55%;*/
 	padding-left: 2%;
 	height: 100%;
+	display: flex;
+	align-items: center;
 }
 
 .logo > h1 {
-	height: 100%;
 	margin: 0;
-	padding-top: 4vh;
+	font-size: 1.5em;
+	font-family: 'Archivo Black', sans-serif;
+	/*height: 100%;*/
+	/*line-height: 100%;*/
+	/*margin: 0;*/
+	/*padding-top: 4vh;*/
 }
 
 nav {
-	display: inline-block;
-	float: right;
+	/*display: inline-block;*/
+	/*float: right;*/
 	height: 100%;
 	width: 30%;
 }
 
-nav > ul {
+.dropdown-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.nav-list {
+	display: none;
+	font-family: 'Tenor Sans', sans-serif;
+	/*position: absolute;
 	height: 100%;
 	margin-bottom: 0;
 	margin-top: 0;
 	padding: 0;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: space-around;
+	align-items: center;
+	top: 100%;*/
 }
 
 .nav-list > li {
+	margin-top: 10%;
 	list-style: none;
-	display: inline-block;
-	padding-top: 6vh;
-	padding-right: 10%;
+}
+
+.nav-list * a {
+	color: #152B42; 
 }
 
 a {
@@ -44,6 +74,7 @@ a {
 }
 
 .logout-button {
+	color: #152B42;
 	margin: 0;
 	padding: 0;
 	border: none;
@@ -52,3 +83,72 @@ a {
 	font-size: 1em;
 }
 
+@media screen and (max-width: 749px) {
+
+	.dropdown-container * .list-button {
+		background-color: white;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 10%;
+		text-align: center;
+	}
+	
+	.dropdown-container:hover > .nav-list {
+		background-color: white;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		top: 100%;
+	}
+}
+
+@media screen and (min-width: 750px) {
+	.logo > h1 {
+		font-size: 1.7em;
+	}
+	.logo {
+		width: 55%;
+	}
+	
+	.fa-navicon {
+		display: none;
+	}
+
+	nav {
+	height: 100%;
+	width: 40%;
+	}
+
+	.dropdown-container {
+		height: 100%;
+	}
+
+	.nav-list {
+		height: 100%;
+		width: 100%;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.nav-list > li {
+		margin-top: 0;
+	}
+}
+
+@media screen and (min-width: 950px) {
+	nav {
+		width: 30%
+	}
+}

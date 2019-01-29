@@ -1,3 +1,13 @@
+* {
+	box-sizing: border-box;
+}
+
+.landing-page-main {
+	height: 100%;
+	width: 100%;
+}
+
 header {
 	height: 15vh;
+	max-height: 150px;
 }

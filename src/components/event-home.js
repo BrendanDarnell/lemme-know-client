@@ -24,11 +24,16 @@ export class EventHome extends React.Component {
 		}
 		else if(this.props.error) {
 			if(this.props.error.message) {
-				return <div className="events-error">{this.props.error.message}</div>
+				return <div className="events-error event-home">{this.props.error.message}</div>
 			}
 			else {
-				return <div className="events-error">Sorry, there was an internal server error.</div>
+				return <div className="events-error event-home">Sorry, there was an internal server error.</div>
 			}
+		}
+		else if(!this.props.events || this.props.events.length === 0) {
+			let noEventsMessage = 'You don\'t currently have any events. To create an event, click Create Event\
+			in the navigation bar.';
+			return <div className="no-events event-home">{noEventsMessage}</div>	
 		}
 		else {
 			const events = this.props.events.map((event,index) => {
@@ -42,7 +47,7 @@ export class EventHome extends React.Component {
 			});
 
 			return (
-				<div className="event-list-div">
+				<div className="event-home">
 					<ul className="event-list">
 						{events}
 					</ul>

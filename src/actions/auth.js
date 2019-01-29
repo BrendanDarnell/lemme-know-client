@@ -24,7 +24,7 @@ export const loginError = (error) => ({
 
 export const login = (data) => dispatch => {
 	dispatch(loginRequest());
-	// console.log(API_BASE_URL);
+	console.log(API_BASE_URL);
 	// console.log(data);
 	return(
 		fetch(`${API_BASE_URL}/login`, {
@@ -76,6 +76,7 @@ export const signupError = (error) => ({
 });
 
 export const signup = (data) => dispatch => {
+	console.log(API_BASE_URL)
 	dispatch(signupRequest());
 	return(
 		// mockApiReq(data)

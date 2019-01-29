@@ -1,10 +1,26 @@
-.event-list-div > ul {
+.event-home {
 	padding-left: 0;
+	background-color: #152B42;
+	min-height: 85vh;
+	margin: 0;
+}
+
+.event-list {
+	padding-left: 0;
+	background-color: #152B42;
+	margin: 0;	
+	padding-top: 2%;
 }
 
 .event-list > li {
 	margin-bottom: 2%;
 	list-style: none;
+}
+
+.no-events {
+	color: white;
+	padding-top: 2%;
+	text-align: center;
 }
 
 .events-error {

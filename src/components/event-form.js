@@ -47,6 +47,7 @@ export function EventForm({error, ...props}) {
 					component={Input}
 					validate={[required, nonEmpty, time]}
 				/>
+				<div className="am-pm">
 				<Field
 					name="amOrPm" 
 					type="radio" 
@@ -63,6 +64,7 @@ export function EventForm({error, ...props}) {
 					component={Input}
 					validate={required}
 				/>
+				</div>
 				<Field 
 					name="contactNumber" 
 					type="text" 
@@ -73,7 +75,7 @@ export function EventForm({error, ...props}) {
 				<Field 
 					name="description" 
 					type="text" 
-					label="Please provide a brief description of what/where you will be doing/going."
+					label="Briefly describe the event."
 					component={Input}
 					validate={[required, nonEmpty]}
 				/>

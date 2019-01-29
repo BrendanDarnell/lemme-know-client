@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 
 import EventHome from './event-home';
 import NewEventPage from './new-event-page';
@@ -13,18 +13,30 @@ export default function App(props) {
 	console.log(props.state);
 	return (
 		<Router>
-			<React.Fragment>
-				<header>
-					<NavBar/>
-				</header>
-
-				<main role="main">
-					<Route exact path="/" component={LandingPage}/>
-					<Route exact path="/signup" component={SignupPage}/>
-					<Route exact path="/my-events" component={EventHome}/>
-					<Route exact path="/create-event" component={NewEventPage}/>
-				</main>
-			</React.Fragment>
+			<Switch>
+				<Route exact path="/" component={LandingPageContainer}/>
+				<Route component={DefaultContainer}/>			
+			</Switch>
 		</Router>
 	);
 }
+
+const LandingPageContainer = () => (		
+	<main role="main" className="landing-page-main">
+		<Route exact path="/" component={LandingPage}/>
+	</main>	
+)
+
+const DefaultContainer = () => (
+	<React.Fragment>
+		<header>
+			<NavBar/>
+		</header>
+
+		<main role="main">
+			<Route exact path="/signup" component={SignupPage}/>
+			<Route exact path="/my-events" component={EventHome}/>
+			<Route exact path="/create-event" component={NewEventPage}/>
+		</main>
+	</React.Fragment>
+)

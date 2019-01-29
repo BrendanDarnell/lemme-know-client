@@ -33,5 +33,5 @@ export const date = value =>
 
 export const time = value =>
     /^\d{1,2}:\d{2}$/.test(value) && (value.length === 5 || value.length === 4) ? undefined :
-    'Time must be have HH:MM format.' 
+    'Time must have HH:MM format.' 
 

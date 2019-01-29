@@ -1,9 +1,12 @@
 .new-event {
 	text-align: center;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.8em;
 }
 
 .event-form {
-	width: 60%;
+	color: white;
+	width: 95%;
 	height: 60%;
 	margin-left: auto;
 	margin-right: auto;
@@ -11,36 +14,89 @@
 	border: 1px solid black;
 	padding-top: 1%;
 	padding-bottom: 1%;
+	/*background-color: white;*/
 }
 
-input {
+.new-event-page > h2 {
+	margin-top: 0;
+	padding-top: 2%;
+	color: white;
+}
+
+.event-form * input {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1%;
-	width: 80%;
+	width: 90%;
 
 }
 
-label {
-	padding-left: 10%;
+.event-form * label {
+	padding-left: 5%;
+	font-family: 'Tenor Sans', sans-serif;
 }
 
-.field-error {
-	padding-left: 10%;
+.event-form * .field-error {
+	padding-left: 5%;
 	color: red;
+	float: left;
 }
 
-.form-error {
+.event-form * .form-error {
 	text-align: center;
 	color: red;
 }
 
-.form-button {
-	height: 5vh;
+.event-form > .form-button {
+	height: 4vh;
 	width: 15%;
+	min-width: 60px;
 	margin-top: 2%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	min-height: 30px;
+	max-height: 50px;
+	background-color: white;
+	color: #152B42;
+	border: 1px solid black;
+	text-align: center;
+	cursor: pointer;
+}
+
+.return-time {
+	padding-left: 5%;
+	display: flex;
+	justify-content: right;
+}
+
+.return-time * [name="returnTime"] {
+	height: 60%;
+	width: 100%;
+	margin: 0;
+}
+
+.return-time * label {
+	padding-left: 0;
+}
+
+.am-pm {
+	display: flex;
+	margin-left: 5%;
+	width: 20%;
+	max-width: 70px;
+	justify-content: space-between;
+}
+
+@media screen and (min-width: 600px) {
+	.event-form {
+		width: 85%;
+	}	
+}
+
+@media screen and (min-width: 900px) {
+	.event-form {
+		width: 70%;
+	}	
 }
