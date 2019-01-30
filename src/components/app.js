@@ -10,7 +10,6 @@ import SignupPage	from './signup-page';
 import './app.css';
 
 export default function App(props) {
-	console.log(props.state);
 	return (
 		<Router>
 			<Switch>

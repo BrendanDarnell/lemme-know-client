@@ -9,7 +9,6 @@ import './landing-page.css';
 export function LandingPage(props) {
 	if(props.loggedIn && props.token) {
 		return <Redirect to="/my-events"/>
-		// return props.history.push('/my-events')
 	}
 	else if(props.loading) {
 		return(

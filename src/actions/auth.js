@@ -1,3 +1,4 @@
+// use redux-form SubmissionError to display async errors on form submission
 import {SubmissionError} from 'redux-form';
 
 import {saveCredentials, clearCredentials} from '../local-storage';
@@ -24,8 +25,6 @@ export const loginError = (error) => ({
 
 export const login = (data) => dispatch => {
 	dispatch(loginRequest());
-	console.log(API_BASE_URL);
-	// console.log(data);
 	return(
 		fetch(`${API_BASE_URL}/login`, {
 			method: 'POST',
@@ -36,11 +35,9 @@ export const login = (data) => dispatch => {
 		})
 		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
-			console.log(res);
 			return res.json()
 		})
 		.then(res => {
-			console.log(res);
 			dispatch(loginSuccess(res));
 			return res;
 		})
@@ -76,10 +73,8 @@ export const signupError = (error) => ({
 });
 
 export const signup = (data) => dispatch => {
-	console.log(API_BASE_URL)
 	dispatch(signupRequest());
 	return(
-		// mockApiReq(data)
 		fetch(`${API_BASE_URL}/signup`, {
 			method: 'POST',
 			headers: {
@@ -89,11 +84,9 @@ export const signup = (data) => dispatch => {
 		})
 		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
-			console.log(res);
 			return res.json()
 		})
 		.then(res => {
-			console.log(res);
 			dispatch(signupSuccess(res));
 			return res;
 		})
@@ -105,7 +98,7 @@ export const signup = (data) => dispatch => {
 			}
 			else {
 				let message = 'Sorry, there was an error creating your account.'
-				return Promise.reject(new SubmissionError({_error: message}))		
+				return Promise.reject(new SubmissionError({_error: message}));		
 			}	
 		})
 	);

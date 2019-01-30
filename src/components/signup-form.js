@@ -12,7 +12,6 @@ const usernameLength = length({min: 3, max: 40});
 export function SignupForm({error, ...props}) {
 	let formError;
 	if(error) {
-		console.log(error);
 		formError = (
 			<div className="form-error" aria-live="polite">
                 {error}
@@ -26,7 +25,6 @@ export function SignupForm({error, ...props}) {
 			<form 
 				className="signup-form"
 				onSubmit={props.handleSubmit(data => {
-					console.log(data);
 					return props.dispatch(signup(data))
 				}
 				)}
@@ -70,10 +68,11 @@ export function SignupForm({error, ...props}) {
 				<button type="submit" disabled={props.pristine||props.submitting} className="form-button">Submit</button>
 			</form>
 		</React.Fragment>
-	);
-	
+	);	
 }
 
+// set destroyOnUnmount to false so the form is not cleared if server returns validation error
+// use onSubmitSuccess to clear form if a successful submission is made
 export default reduxForm({
 	form: 'registration',
 	onSubmitFail: (errors, dispatch) =>

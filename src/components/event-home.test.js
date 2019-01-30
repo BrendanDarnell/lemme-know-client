@@ -20,7 +20,6 @@ jest.mock('../actions/events', () => Object.assign({},
 	)
 );
 
-
 describe('<EventHome/>', () => {
 	it('should render without crashing', () => {
 		let props = {
@@ -95,7 +94,7 @@ describe('<EventHome/>', () => {
 		}	
 		const dispatch = jest.fn();
 		let wrapper = shallow(<EventHome {...props} dispatch={dispatch}/>);
-		expect(wrapper.contains(<div className="events-error">mock error message</div>)).toBe(true);		
+		expect(wrapper.contains(<div className="events-error event-home">mock error message</div>)).toBe(true);		
 	});
 
 	it('should display no event message if the user does not have any events', ()=> {

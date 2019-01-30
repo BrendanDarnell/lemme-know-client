@@ -18,7 +18,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 const credentials = loadCredentials();
 if(credentials) {
 	if(credentials.username && credentials.token && credentials.name) {
-		console.log('credentials', credentials);
 		store.dispatch(loginSuccess(credentials));
 	}
 }

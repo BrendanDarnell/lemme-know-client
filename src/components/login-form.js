@@ -9,7 +9,6 @@ import './login-form.css';
 export function LoginForm({error, ...props}) {
 	let formError;
 	if(error) {
-		console.log(error);
 		formError = (
 			<div className="form-error" aria-live="polite">
                 {error}
@@ -49,6 +48,8 @@ export function LoginForm({error, ...props}) {
 	);	
 }
 
+// set destroyOnUnmount to false so the form is not cleared if server returns validation error
+// use onSubmitSuccess to clear form if a successful submission is made
 export default reduxForm({
 	form: 'login',
 	onSubmitFail: (errors, dispatch) =>

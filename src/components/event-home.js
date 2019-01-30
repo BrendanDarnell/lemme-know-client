@@ -12,7 +12,6 @@ export class EventHome extends React.Component {
 	}
 	
 	componentDidMount() {
-		console.log('mounted', this.props.events);
 		if(!this.props.events || this.props.events.length === 0) {
 			this.props.dispatch(fetchEvents(this.props.username, this.props.token));
 		}

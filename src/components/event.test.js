@@ -3,7 +3,6 @@ import {shallow} from 'enzyme';
 
 import Event from './event';
 
-
 describe('<Event/>', () => {
 	it('should render without crashing', () => {
 		let wrapper = shallow(<Event/>);

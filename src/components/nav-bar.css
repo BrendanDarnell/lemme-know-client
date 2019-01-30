@@ -2,7 +2,6 @@
 .header-div {
 	color: #152B42;
 	border: solid 1px black;
-	/*background-color: grey;*/
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -10,8 +9,6 @@
 }
 
 .logo {
-	/*display: inline-block;*/
-	/*width: 55%;*/
 	padding-left: 2%;
 	height: 100%;
 	display: flex;
@@ -22,15 +19,9 @@
 	margin: 0;
 	font-size: 1.5em;
 	font-family: 'Archivo Black', sans-serif;
-	/*height: 100%;*/
-	/*line-height: 100%;*/
-	/*margin: 0;*/
-	/*padding-top: 4vh;*/
 }
 
 nav {
-	/*display: inline-block;*/
-	/*float: right;*/
 	height: 100%;
 	width: 30%;
 }
@@ -47,16 +38,6 @@ nav {
 .nav-list {
 	display: none;
 	font-family: 'Tenor Sans', sans-serif;
-	/*position: absolute;
-	height: 100%;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	/*justify-content: space-around;
-	align-items: center;
-	top: 100%;*/
 }
 
 .nav-list > li {

@@ -14,7 +14,6 @@ export class NewEventPage extends React.Component {
 	}
 	
 	componentDidUpdate(prevProps) {
-		console.log(this.props.events, prevProps.events);
 		if(this.props.events !== prevProps.events) {
 			return this.props.history.push('/my-events');
 		}

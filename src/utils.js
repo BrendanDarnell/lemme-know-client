@@ -1,20 +1,21 @@
-// import {submissionError} from 'redux-form';
+
 import moment from 'moment';
 
+// checks that the provided date is formatted properly and is a valid date
 export function validateDate(date) {
 	let formattedDate = moment(date, 'MM-DD-YY', true);
 	return formattedDate.isValid();
 }
 
+// convert to UTC time on client side so time zones are not an issue 
+// returns a promise so it can be chained with async server requests
 export function convertToUtc(date, time) {
 	let formattedDateAndTime = moment(date + ' ' + time, ['MM-DD-YY hh:mm a', 'MM-DD-YY h:mm a'],  true);
-	// return formattedDateAndTime.isValid();
 	return new Promise((resolve,reject) => {
 		if(formattedDateAndTime.isValid()) {
 			resolve(moment.utc(formattedDateAndTime));
 		}
 		else {
-			console.log('convertToUtc error')
 			reject({
 				type: 'validationError',
 				field: 'date',

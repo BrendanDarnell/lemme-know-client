@@ -7,7 +7,6 @@ import SignupForm from './signup-form';
 import './signup-page.css';
 
 export function SignupPage(props) {
-	console.log(props.loggedIn, props.loading);
 	if(props.loggedIn && props.token) {
 		return <Redirect to="/my-events"/>
 	}

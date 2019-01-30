@@ -1,3 +1,4 @@
+// use redux-form SubmissionError to display async errors on form submission
 import {SubmissionError} from 'redux-form';
 
 import {logout} from './auth';
@@ -22,12 +23,10 @@ export const fetchEvents = (username, token) => dispatch => {
 		})
 		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
-			console.log(res);
 			return res.json();
 		})
 		.then(events => dispatch(loadEvents(events, null)))
 		.catch(err => {
-			console.log(err);
 			dispatch(loadEvents(null, err))
 		})
 	)
@@ -52,15 +51,12 @@ export const newEventError = (error) => ({
 
 export const newEvent = (data) => dispatch => {
 	dispatch(newEventRequest());
-	console.log(data.date, data.returnTime+data.amOrPm);
 	return(
 		convertToUtc(data.date, data.returnTime +' '+ data.amOrPm)
 		.then(utcDateTime => {
 			data.utcDateTime = utcDateTime;
-			// return data;
 		})
 		.then(() => {
-			console.log('new event request', data);
 			return fetch(`${API_BASE_URL}/events`, {
 			method: 'POST',
 			headers: {
@@ -71,13 +67,11 @@ export const newEvent = (data) => dispatch => {
 		})
 		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
-			console.log(res);
 			return res.json();
 		})
 		.then(updatedEvents => dispatch(newEventSuccess(updatedEvents)))
 		.catch(err => {
 			dispatch(newEventError(err));
-			console.log(err.message);
 			if(err.message) {
 				return Promise.reject(new SubmissionError({_error: err.message}));
 			}
@@ -108,7 +102,6 @@ export const deleteEventError = (error) => ({
 
 export const deleteEvent = (token, eventId) => dispatch => {
 	dispatch(deleteEventRequest());
-	console.log(eventId);
 	return(
 		fetch(`${API_BASE_URL}/events/${eventId}`, {
 			method: 'DELETE',
@@ -119,7 +112,6 @@ export const deleteEvent = (token, eventId) => dispatch => {
 		})
 		.then(res => normalizeResponseErrors(res))
 		.then(res =>  {
-			console.log(res);
 			return res.json();
 		})		
 		.then(updatedEvents => dispatch(deleteEventSuccess(updatedEvents)))
