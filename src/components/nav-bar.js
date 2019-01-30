@@ -5,9 +5,10 @@ import {logout} from '../actions/auth';
 
 import './nav-bar.css';
 
+//the onTouchStart prop allows the dropdown menu to work on iOS
 export function NavBar(props) {
 	return (
-		<div className="header-div">	
+		<div className="header-div" onTouchStart={(e) => e.preventDefault}>	
 			<div className="logo">
 				<h1>Lemme Know</h1>
 			</div>
