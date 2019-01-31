@@ -1,44 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lemme Know
 
-## Available Scripts
+Lemmo Know helps people stay safe while enjoying activities they love.  Users create events for upcoming activities, providing
+some details about what they are doing, when they are expected to return, and a contact's phone number.  If they do no return
+from the event by the specified time, their contact is sent a text asking to check up on the user.
 
-In the project directory, you can run:
+## Using the App
 
-### `npm start`
+![landing page](screenshots/landing-page.png)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+On the landing page, scroll to the bottom to login or click the link to create an account.  To demo the app, the username: DemoUser and password: password can be used to login.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+![create event](screenshots/create-event.png)
 
-### `npm test`
+Click the Create Event link in the navigation bar to add a new event.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![my events](screenshots/my-events.png)
 
-### `npm run build`
+The My Events page shows upcoming events and allows users to check-in from events that they have returned from. 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- [Live Demo](https://sleepy-lake-69131.herokuapp.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technology Used
 
-### `npm run eject`
+* Front-End
+    * HTML
+    * CSS
+    * Node
+    * React
+    * React Router
+    * Redux
+    * Redux Thunk
+    * Redux Form
+    * Moment
+    * Testing 
+        * Jest
+        * Enzyme
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Back-End
+    * Node
+    * Express
+    * Mongoose
+    * Passport
+    * Passport-jwt
+    * Jsonwebtoken
+    * Bcryptjs
+    * Twilio
+    * Moment
+    * Testing
+        * Mocha
+        * Chai
+        * Chai-http
+        * Faker
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Documentation
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* /signup 
+    * Expect a 201 status with user and token in body, otherwise a 400 status.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* /login
+    * Expect a 200 status with user and token in body, otherwise a 400 status.
 
-## Learn More
+* /events
+    * Expect a 201 status with an array of events, including the created event, for specified user, otherwise a 400 status.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* /events/:username
+	* Expect a 200 status with an array of events for specified user, otherwise a 400 status.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* /events/:id
+	* Expect a 200 status with an array of events, excluding the deleted event, otherwise a 400 status.
+
+## Acknowledgements
+
+Jacob Haskins for helping me learn React and providing feedback on this app.
+
+

@@ -1,6 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import EventHome from './event-home';
 import NewEventPage from './new-event-page';
@@ -28,7 +27,7 @@ const LandingPageContainer = () => (
 
 const DefaultContainer = () => (
 	<React.Fragment>
-		<header>
+		<header role="banner">
 			<NavBar/>
 		</header>
 

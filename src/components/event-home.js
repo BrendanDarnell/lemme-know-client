@@ -61,8 +61,7 @@ const mapStateToProps = (state, props) => ({
 	token: state.auth.token,
 	events: state.events.events,
 	error: state.events.error,
-	loggedIn: state.auth.loggedIn,
-	token: state.auth.token
+	loggedIn: state.auth.loggedIn
 });
 
 export default connect(mapStateToProps)(EventHome);

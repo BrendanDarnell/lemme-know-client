@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import {SubmissionError} from 'redux-form';
 
 import EventForm from './event-form';
 import {newEvent} from '../actions/events';
